@@ -3,8 +3,8 @@
 
 PKG             := vmime
 $(PKG)_IGNORE   :=
-$(PKG)_VERSION  := e7739c0
-$(PKG)_CHECKSUM := a24b9d8f3e772dad95a8e479ff9ee203303e17b2
+$(PKG)_VERSION  := 23fc354
+$(PKG)_CHECKSUM := 804599ac557f020e6eb5a6ab396136bfa2f71362
 $(PKG)_SUBDIR   := kisli-vmime-$($(PKG)_VERSION)
 $(PKG)_FILE     := $(PKG)-$($(PKG)_VERSION).tar.gz
 $(PKG)_URL      := https://github.com/kisli/vmime/tarball/$($(PKG)_VERSION)/$($(PKG)_FILE)
@@ -40,7 +40,7 @@ define $(PKG)_BUILD
 
     $(MAKE) -C '$(1)' -j '$(JOBS)'
     $(SED) -i 's,^\(Libs.private:.* \)$(PREFIX)/$(TARGET)/lib/libiconv\.a,\1-liconv,g' $(1)/vmime.pc
-    $(if $(BUILD_STATIC),$(SED) -i 's/^\(Cflags:.* \)/\1 -DVMIME_STATIC/g' $(1)/vmime.pc)
+    $(if $(BUILD_STATIC),$(SED) -i 's/^\(Cflags:.* \)/\1 -DVMIME_STATIC /g' $(1)/vmime.pc)
     $(MAKE) -C '$(1)' install
     $(if $(BUILD_SHARED),$(INSTALL) -m644 '$(1)/build/bin/libvmime.dll' '$(PREFIX)/$(TARGET)/bin/')
 
